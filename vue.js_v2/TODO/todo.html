@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>vue.js_udemy</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="todo.css">
+</head>
+<body>
+    <div id="app">
+        <h2>TODOリスト</h2>
+        <form v-on:submit.prevent>
+            <input type="text" v-model="newitem">
+            <button v-on:click="additem">追加</button>
+        </form>
+        <ul>
+            <li v-for="(todo, index) in todos">
+                <input type="checkbox" v-model="todo.isdone">
+                <span v-bind:class="{ done: todo.isdone }">{{ todo.item }}</span>
+                <button v-on:click="deleteitem(index)">delete</button>
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="todo.js"></script>
+</body>
+</html>

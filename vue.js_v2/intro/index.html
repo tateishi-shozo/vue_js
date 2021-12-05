@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>vue.js_udemy</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+    --15
+    <div id="app1">
+        <p>
+            <input type="text" v-model="message">
+        </p>
+        <p>
+            {{ message }}
+        </p>
+    </div>
+
+    --16
+    <div id="app2">
+        <p>
+            {{ message }}
+        </p>
+        <p>
+            {{ count }}
+        </p>
+        <p>
+            {{ user.name }}
+            {{ user.age }}
+        </p>
+        <p>
+            {{ family[2] }}
+        </p>
+        <input type="text" v-bind:value="message"/>
+    </div>
+
+    --24 v-bind 値の属性の前を変更することで変化させる 同じファイル内に同じidは使えないっぽい
+    <div id ="app2">
+        <input type="text" v-bind:value="message"/>
+    </div>
+
+    --26 v-ifは=で指定　true,false 0,1でも指定可能
+    <div id="app3">
+        <p v-if="toggle">
+            Hello
+        </p>
+    
+
+    --27 v-show cssから表示非表示を行う v-ifより負担少ない
+        <p v-show="toggle">
+            Hello
+        </p>
+    </div>
+
+    --28 v-for繰り返し
+    <div id="app4">
+        <ul>
+            <li v-for="family in families">{{ family }}</li>
+        </ul>
+    </div>
+
+    --29 v-forでオブジェクトを繰り返し
+    <div id="app5">
+        <ul>
+            <li v-for="value in kazoku">{{ value }}</li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="(value,key) in kazoku">{{key}}::{{ value }}</li>
+        </ul>
+    </div>
+
+    --30 v-on 何か動作したら動く（ボタンに定義） methodsで定義
+    <div id="app6">
+        <button v-on:click="onclick">
+            時刻
+        </button>
+        <p>
+            {{ now }}
+        </p>
+    </div>
+
+    --31v-model 双方向データバインディング　フロントもvueも変更可能　v-bindは1方向
+
+    <div id="app7">
+        <input type="text" v-model="hoge">
+        <p>
+            {{ $data }}
+        </p>
+    </div>
+
+    --32コンポーネント 使いまわしたいパーツを生成する　コンポーネント定義の下のエレメント内で利用可能
+
+    <div id="app8">
+        <hello-component></hello-component>
+        <hello-component></hello-component>
+        <hello-component></hello-component>
+    </div>
+
+    <hr>
+    復習
+    ・v-bind:〇〇⇦マウントしたいもの
+    ・v-if=〇〇で真偽判定
+
+
+    <div id="app9">
+        <p v-if="test">
+            <a v-bind:href="url">vue</a>
+        </p>
+        <input type="text" v-model="test">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

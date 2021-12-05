@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>vue.js_udemy</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="BTC.css">
+</head>
+<body>
+    <div id="app">
+        <h2>Bitcoin Praice</h2>
+        <section v-if="hasError">
+            Error.
+        </section>
+        <section v-else>
+            <div v-if="loading">
+                Loading...
+            </div>
+            <div v-else>
+                <ul V-cloak>
+                    <li v-for="(rate,currency) in bpi">
+                        {{ currency }} : {{ rate.rate_float | currencyDecimal}}
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+    <script src="BTC.js"></script>
+</body>
+</html>
