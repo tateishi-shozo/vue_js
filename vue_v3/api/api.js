@@ -1,23 +1,44 @@
 const app = Vue.createApp({
     data: () => ({
-        km: 0,
-        m: 0
+        items: null,
+        keyword: '',
+        message: ''
+
     }),
     watch: {
-        km: function() {
-            console.log(this.km)
-            //this.km = value
-            // this.m = value * 1000
+        keyword: function(newKeyword,oldKeyword){
+            console.log(newKeyword)
+            this.message = 'Waiting for you to stop typing...'
+            this.debounceGetAnswer()
+        }
+    },
+    mounted: function() {
+        // this.keyword = 'JavaScript'
+        // this.getAnswer()
+        this.debounceGetAnswer = _.debounce(this.getAnswer, 1000)
+    },
+    methods: {
+        getAnswer: function() {
+            if(this.keyword === ''){
+                this.items = null
+                return
+            }
 
-            //下記ではNaNとなる
-            this.m = this.km * 1000
-        },
-        m: function() {
-            // this.m = value
-            // this.km = value / 1000
-
-            //下記ではNaNとなる
-            this.km = this.m / 1000
+            this.message = 'Lading...'
+            //こことL29あたりが謎　インスタンス生成しているので定数で指定？
+            const vm = this
+            const params = { page: 1, pre_page: 20, query: this.keyword }
+            axios.get('https://qiita.com/api/v2/items',{ params })
+            .then(function(response){
+                // this.items = response.data
+                vm.items = response.data
+            })
+            .catch(function(error){
+                vm.message = 'Error!' + error
+            })
+            .finally(function() {
+                vm.message = ''
+            })
         }
     }
 })

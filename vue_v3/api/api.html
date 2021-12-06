@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>vue.js_udemy</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="api.css">
+</head>
+<body>
+    <div id="app">
+        <P><input type="text" v-model="keyword"></P>
+        <p>{{ message }}</p>
+        <ul>
+            <li v-for="item in items">
+                <a v-bind:href="item.url" target="_blank">
+                    {{ item.title }}
+                </a>
+                likes:{{ item.likes_count }}
+            </li>
+        </ul>
+    </div>
+<script src="https://unpkg.com/vue@3.1.5"></script>
+<script src="https://unpkg.com/axios@0.21.1/dist/axios.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.js">
+</script>
+<script src="api.js"></script>
+</body>
+</html>
